@@ -14,9 +14,9 @@ namespace ServiceCloud.Logger
         [TestCase(-1, null)]
         public void SimpleMessageFormatter_Format_Test(int level, string mess)
         {
-            SimpleMessageFormatter target = new SimpleMessageFormatter();
+            SimpleMessageFormatter TestObject = new SimpleMessageFormatter();
 
-            string result = target.Format(level, mess);
+            string result = TestObject.Format(level, mess);
             string expected = level + ": " + mess;
 
             Assert.AreEqual(expected, result);

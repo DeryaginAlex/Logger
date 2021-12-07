@@ -4,75 +4,59 @@ using System;
 using Moq;
 
 
-namespace ServiceCloud.Logger
-{
+namespace ServiceCloud.Logger {
     [TestFixture]
-    abstract public class ITextFileLoggerTests
-    {
+    abstract public class ITextFileLoggerTests {
         protected abstract ITextFileLogger CreateTestObject();
+        private ITextFileLogger TestObject;
+
+        [SetUp]
+        public void Setup() {
+            TestObject = CreateTestObject();
+        }
 
         [Test]
-        public void ITextFileLogger_Encoding_DefaultValue_Test()
-        {
-            ITextFileLogger target = CreateTestObject();
-            string res = target.Encoding.ToString();
+        public void ITextFileLogger_Encoding_DefaultValue_Test() {
+            string res = TestObject.Encoding.ToString();
 
             Assert.IsFalse(string.IsNullOrEmpty(res));
         }
 
         [Test]
-        public void ITextFileLogger_FilePath_DefaultValue_Test()
-        {
-            ITextFileLogger target = CreateTestObject();
-
-            Assert.IsFalse(string.IsNullOrEmpty(target.FilePath));
+        public void ITextFileLogger_FilePath_DefaultValue_Test() {
+            Assert.IsFalse(string.IsNullOrEmpty(TestObject.FilePath));
         }
 
         [Test]
-        public void ITextFileLogger_MessageDelimiter_DefaultValue_Test()
-        {
-            ITextFileLogger target = CreateTestObject();
-
-            Assert.IsFalse(string.IsNullOrEmpty(target.MessageDelimiter));
+        public void ITextFileLogger_MessageDelimiter_DefaultValue_Test() {
+            Assert.IsFalse(string.IsNullOrEmpty(TestObject.MessageDelimiter));
         }
-        
-        [Test]
-        public void ITextFileLogger_MessageFormatter_DefaultValue_Test()
-        {
-            ITextFileLogger target = CreateTestObject();
-
-            Assert.IsNotNull(target.MessageFormatter);
-        }
-        
 
         [Test]
-        public void ITextFileLogger_MessageFormatter_SetCorrectValue_Test()
-        {
-            ITextFileLogger target = CreateTestObject();
+        public void ITextFileLogger_MessageFormatter_DefaultValue_Test() {
+            Assert.IsNotNull(TestObject.MessageFormatter);
+        }
+
+        [Test]
+        public void ITextFileLogger_MessageFormatter_SetCorrectValue_Test() {
             var expected = Mock.Of<IMessageFormatter>();
 
-            target.MessageFormatter = expected;
+            TestObject.MessageFormatter = expected;
 
-            Assert.AreEqual(expected, target.MessageFormatter);
+            Assert.AreEqual(expected, TestObject.MessageFormatter);
         }
 
         [Test]
-        public void ITextFileLogger_MessageFormatter_SetIncorrectValueTryCatch_Test()
-        {
-            ITextFileLogger target = CreateTestObject();
+        public void ITextFileLogger_MessageFormatter_SetIncorrectValueTryCatch_Test() {
             bool res = false;
-            target.MessageFormatter = null;
+            TestObject.MessageFormatter = null;
 
-            try
-            {                
-                if (target.MessageFormatter == null)
-                {
+            try {
+                if(TestObject.MessageFormatter == null) {
                     throw new ArgumentNullException();
                 }
-            }
-            catch (ArgumentNullException)
-            {
-                res = true;               
+            } catch(ArgumentNullException) {
+                res = true;
             }
 
             Assert.IsTrue(res);

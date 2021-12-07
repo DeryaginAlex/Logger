@@ -1,25 +1,21 @@
 ﻿using NUnit.Framework;
 using System.IO;
 
-namespace ServiceCloud.Logger
-{
-    public class TextFileLoggerTestsContext
-    {
+namespace ServiceCloud.Logger {
+    public class SimpleTextFileLoggerTestsContext {
         /// <summary>
         /// Создание журнала
         /// </summary>
         /// <param name="path">Полный путь к журналу</param>
-        public void CreateJournal(string path)
-        {
-          File.Create(path).Dispose();   
+        public void CreateJournal(string path) {
+            File.Create(path).Dispose();
         }
 
         /// <summary>
         /// Удаление журнал
         /// </summary>
         /// <param name="path">Полный путь к журналу</param>
-        public void DeleteJournals(string path)
-        {
+        public void DeleteJournals(string path) {
             File.Delete(path);
         }
 
@@ -27,8 +23,7 @@ namespace ServiceCloud.Logger
         /// Создание папки с журналами 
         /// </summary>
         /// <param name="path">Полный путь к журналу</param>
-        public void CreateDirectory(string path)
-        {
+        public void CreateDirectory(string path) {
             Directory.CreateDirectory(path);
         }
 
@@ -36,8 +31,7 @@ namespace ServiceCloud.Logger
         /// Удаление из папки всех журналов
         /// </summary>
         /// <param name="path">Полный путь к журналу</param>
-        public void DeleteAllJournals(string path)
-        {  
+        public void DeleteAllJournals(string path) {
             Directory.Delete(path, true);
             Directory.CreateDirectory(path);
         }
@@ -47,8 +41,7 @@ namespace ServiceCloud.Logger
         /// </summary>
         /// <param name="path">Полный путь к журналу</param>
         /// <returns></returns>
-        public string GetLastLines(string path)
-        {
+        public string GetLastLines(string path) {
             string[] text = File.ReadAllLines(path);
 
             return text[text.Length - 1];
@@ -59,9 +52,8 @@ namespace ServiceCloud.Logger
         /// </summary>
         /// <param name="path">Полный путь к журналу</param>
         /// <returns></returns>
-        public bool thisJournalExists(string path)
-        {
+        public bool thisJournalExists(string path) {
             return File.Exists(path);
-        }         
+        }
     }
 }

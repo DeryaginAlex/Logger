@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServiceCloud.Logger
-{
+namespace ServiceCloud.Logger {
     /// <summary>
     ///Интерфейс объектов, выполняющих журналирование сообщений в текстовый файл
     /// </summary>
-    public interface ITextFileLogger : ILogger
-    {
+    public interface ITextFileLogger : ILogger {
         /// <summary>
         /// Кодировка символов в файле
         /// </summary>

@@ -7,9 +7,9 @@ using System.IO;
 namespace ServiceCloud.Logger
 {
 
-    public class TextFileLogger : ITextFileLogger
+    public class SimpleTextFileLogger : ITextFileLogger
     {
-        public TextFileLogger(Encoding encoding, string filePath, string messageDelimiter)
+        public SimpleTextFileLogger(Encoding encoding, string filePath, string messageDelimiter)
         {
             this.Encoding = encoding;
             this.FilePath = filePath;
