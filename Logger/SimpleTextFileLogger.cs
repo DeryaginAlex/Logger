@@ -4,13 +4,10 @@ using System.Text;
 using System.IO;
 
 
-namespace ServiceCloud.Logger
-{
+namespace ServiceCloud.Logger {
 
-    public class SimpleTextFileLogger : ITextFileLogger
-    {
-        public SimpleTextFileLogger(Encoding encoding, string filePath, string messageDelimiter)
-        {
+    public class SimpleTextFileLogger : ITextFileLogger {
+        public SimpleTextFileLogger(Encoding encoding, string filePath, string messageDelimiter) {
             this.Encoding = encoding;
             this.FilePath = filePath;
             this.MessageDelimiter = messageDelimiter;
@@ -21,15 +18,13 @@ namespace ServiceCloud.Logger
         public string MessageDelimiter { get; private set; }
 
         private IMessageFormatter messageFormatter = new SimpleMessageFormatter();
-        public IMessageFormatter MessageFormatter
-        {
+        public IMessageFormatter MessageFormatter {
             get { return messageFormatter; }
             set { messageFormatter = value; }
         }
 
-        public void Log(int level, string message)
-        {
-            File.AppendAllText(FilePath, MessageFormatter.Format(level, message));
+        public void Log(string line) {
+            File.AppendAllText(FilePath, line);
         }
     }
 }

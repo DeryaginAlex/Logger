@@ -14,6 +14,6 @@ namespace ServiceCloud.Logger
         /// </summary>
         /// <param name="level">Уровень важности сообщения</param>
         /// <param name="message">Текст сообщения</param>
-        void Log(int level, string message);
+        void Log(string lines);
     }
 }

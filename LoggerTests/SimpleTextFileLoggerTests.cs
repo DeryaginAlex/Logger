@@ -63,7 +63,8 @@ namespace ServiceCloud.Logger {
         [TestCase(1, "message")]
         public void TextFileLogger_Log_JournalExist_Test(int level, string message) {
             context.CreateJournal(TestObject.FilePath);
-            TestObject.Log(level, message);
+            string lines = TestObject.MessageFormatter.Format(level, message);
+            TestObject.Log(lines);
             string line = context.GetLastLines(TestObject.FilePath);
             context.DeleteJournals(TestObject.FilePath);
 
@@ -74,7 +75,8 @@ namespace ServiceCloud.Logger {
         public void TextFileLogger_Log_JournalNotExist_Test(int level, string message) {
             bool JournalCreated = false;
 
-            TestObject.Log(level, message);
+            string lines = TestObject.MessageFormatter.Format(level, message);
+            TestObject.Log(lines);
             JournalCreated = context.thisJournalExists(TestObject.FilePath);
             context.DeleteJournals(TestObject.FilePath);
 

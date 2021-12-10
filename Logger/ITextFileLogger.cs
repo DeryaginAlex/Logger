@@ -25,7 +25,6 @@ namespace ServiceCloud.Logger {
         /// <summary>
         /// Стратегия форматирования сообщений журнала
         /// </summary>
-        /// <exception cref="System.ArgumentNullException">Не задана стратегия форматирования записей журнала</exception>
         IMessageFormatter MessageFormatter { get; set; }
     }
 }
