@@ -1,9 +1,7 @@
 using NUnit.Framework;
-using System.Text;
-using System;
+using Logger;
 
-
-namespace ServiceCloud.Logger {
+namespace LoggerTests {
     [TestFixture]
     public class SimpleMessageFormatterTests {
 

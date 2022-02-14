@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using System.IO;
 
 
-namespace ServiceCloud.Logger {
+namespace Logger {
 
     public class SimpleTextFileLogger : ITextFileLogger {
         public SimpleTextFileLogger(Encoding encoding, string filePath, string messageDelimiter) {

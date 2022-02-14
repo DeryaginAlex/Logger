@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
 using System.IO;
+using Logger;
 
-namespace ServiceCloud.Logger {
+namespace LoggerTests {
     public class SimpleTextFileLoggerTestsContext {
         /// <summary>
         /// Создание журнала

@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using System.Text;
-using System;
 using System.IO;
+using Logger;
 
-namespace ServiceCloud.Logger {
+namespace LoggerTests {
     [TestFixture]
     public class SimpleTextFileLoggerTests : ITextFileLoggerTests {
         protected override ITextFileLogger CreateTestObject() {

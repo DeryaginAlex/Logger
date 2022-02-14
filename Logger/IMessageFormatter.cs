@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServiceCloud.Logger
+﻿namespace Logger
 {
     /// <summary>
     /// Интерфейс описывает стратегию форматирования сообщений, записываемых в журнал

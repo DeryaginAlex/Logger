@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
-namespace ServiceCloud.Logger {
+namespace Logger {
     /// <summary>
     ///Интерфейс объектов, выполняющих журналирование сообщений в текстовый файл
     /// </summary>

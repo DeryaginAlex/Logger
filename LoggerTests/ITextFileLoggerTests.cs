@@ -1,10 +1,9 @@
 using NUnit.Framework;
-using System.Text;
 using System;
 using Moq;
+using Logger;
 
-
-namespace ServiceCloud.Logger {
+namespace LoggerTests {
     [TestFixture]
     abstract public class ITextFileLoggerTests {
         protected abstract ITextFileLogger CreateTestObject();

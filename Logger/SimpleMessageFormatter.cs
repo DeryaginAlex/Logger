@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
-namespace ServiceCloud.Logger {
+namespace Logger {
     /// <summary>
     /// Класс форматирует сообщения, по принципу (level: message)
     /// </summary>
