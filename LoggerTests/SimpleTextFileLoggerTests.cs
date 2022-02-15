@@ -7,39 +7,39 @@ namespace LoggerTests {
     [TestFixture]
     public class SimpleTextFileLoggerTests : ITextFileLoggerTests {
         protected override ITextFileLogger CreateTestObject() {
-            return new SimpleTextFileLogger(Encoding.Unicode, @"C:\Logs\1.txt", "\n-----------\nконец записи\n\n");
+            return new SimpleTextFileLogger(Encoding.Unicode, @"C:\Logs\1.txt", "\n-----------\nend of recording\n\n");
         }
 
-        private ITextFileLogger TestObject;
+        private ITextFileLogger testObject;
         private SimpleTextFileLoggerTestsContext context;
 
         [SetUp]
-        public void Setup() {
-            TestObject = (SimpleTextFileLogger)CreateTestObject();
+        public void SetUp() {
+            testObject = (SimpleTextFileLogger)CreateTestObject();
             context = new SimpleTextFileLoggerTestsContext();
         }
 
         [Test]
         public void TextFileLogger_FilePath_Test() {
-            Assert.AreEqual(TestObject.FilePath, @"C:\Logs\1.txt");
+            Assert.AreEqual(testObject.FilePath, @"C:\Logs\1.txt");
         }
 
         [Test]
         public void TextFileLogger_Encoding_Test() {
-            Assert.AreEqual(TestObject.Encoding, Encoding.Unicode);
+            Assert.AreEqual(testObject.Encoding, Encoding.Unicode);
         }
 
         [Test]
         public void TextFileLogger_MessageDelimiter_Test() {
-            Assert.AreEqual(TestObject.MessageDelimiter, "\n-----------\nконец записи\n\n");
+            Assert.AreEqual(testObject.MessageDelimiter, "\n-----------\nконец записи\n\n");
         }
 
         [Test]
         public void TextFileLogger_FilePath_ValidDirectory_Test() {
-            context.CreateJournal(TestObject.FilePath);
-            string directoryName = Path.GetDirectoryName(TestObject.FilePath);
+            context.CreateJournal(testObject.FilePath);
+            string directoryName = Path.GetDirectoryName(testObject.FilePath);
             bool result = Directory.Exists(directoryName);
-            context.DeleteJournals(TestObject.FilePath);
+            context.DeleteJournals(testObject.FilePath);
 
             Assert.IsTrue(result);
         }
@@ -47,7 +47,7 @@ namespace LoggerTests {
         [Test]
         public void TextFileLogger_FilePath_ValidFile_Test() {
 
-            string path = Path.GetDirectoryName(TestObject.FilePath);
+            string path = Path.GetDirectoryName(testObject.FilePath);
             context.CreateDirectory(path);
             bool result = Directory.Exists(path);
             context.DeleteAllJournals(path);
@@ -57,28 +57,28 @@ namespace LoggerTests {
 
         [Test]
         public void TextFileLogger_MessageDelimiter_IsInvalidDelimiter_Test() {
-            Assert.IsTrue(!string.IsNullOrEmpty(TestObject.MessageDelimiter));
+            Assert.IsTrue(!string.IsNullOrEmpty(testObject.MessageDelimiter));
         }
 
         [TestCase(1, "message")]
         public void TextFileLogger_Log_JournalExist_Test(int level, string message) {
-            context.CreateJournal(TestObject.FilePath);
-            string lines = TestObject.MessageFormatter.Format(level, message);
-            TestObject.Log(lines);
-            string line = context.GetLastLines(TestObject.FilePath);
-            context.DeleteJournals(TestObject.FilePath);
+            context.CreateJournal(testObject.FilePath);
+            string lines = testObject.MessageFormatter.Format(level, message);
+            testObject.Log(lines);
+            string line = context.GetLastLines(testObject.FilePath);
+            context.DeleteJournals(testObject.FilePath);
 
-            Assert.AreEqual(line, TestObject.MessageFormatter.Format(level, message));
+            Assert.AreEqual(line, testObject.MessageFormatter.Format(level, message));
         }
 
         [TestCase(1, "message")]
         public void TextFileLogger_Log_JournalNotExist_Test(int level, string message) {
             bool JournalCreated = false;
 
-            string lines = TestObject.MessageFormatter.Format(level, message);
-            TestObject.Log(lines);
-            JournalCreated = context.thisJournalExists(TestObject.FilePath);
-            context.DeleteJournals(TestObject.FilePath);
+            string lines = testObject.MessageFormatter.Format(level, message);
+            testObject.Log(lines);
+            JournalCreated = context.thisJournalExists(testObject.FilePath);
+            context.DeleteJournals(testObject.FilePath);
 
             Assert.IsTrue(JournalCreated);
         }
